@@ -1,3 +1,5 @@
+package net.atlassian.api;
+
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 

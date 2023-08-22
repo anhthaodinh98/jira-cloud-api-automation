@@ -3,10 +3,9 @@ package net.atlassian.api;
 import com.beust.jcommander.internal.Maps;
 import com.hubspot.jinjava.Jinjava;
 import io.restassured.response.Response;
+import ultilities.FileReader;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Map;
 
 public class Issues extends JiraCloudBase {
@@ -28,14 +27,12 @@ public class Issues extends JiraCloudBase {
         context.put("summary", summary);
         context.put("reporterId", reporterId);
 
-        String template = new String(Files.readAllBytes(Paths.get("src/test/resources/templates/payloadCreateIssue.json")));
+        String template = FileReader.readFile("src/test/resources/templates/payloadCreateIssue.json");
         String renderedTemplate = jinjava.render(template, context);
 
         Response response = authenticate()
                 .body(renderedTemplate)
                 .post(POST_CREATE_ISSUE);
-        System.out.println("Code " + response.statusCode());
-        System.out.println("Response" + response.getBody().asString());
         return response;
     }
 

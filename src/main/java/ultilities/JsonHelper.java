@@ -14,4 +14,9 @@ public class JsonHelper {
         String content = new String(Files.readAllBytes(Paths.get(filename)));
         return new JSONObject(content);
     }
+
+    public static JSONObject parseString(String text) throws JSONException {
+        JSONObject jsonObject = new JSONObject(text);
+        return jsonObject;
+    }
 }
