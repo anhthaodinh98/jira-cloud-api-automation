@@ -1,0 +1,18 @@
+{
+  "fields": {
+    "project": {
+      "id": "{{projectId}}"
+    },
+    "issuetype": {
+      "id": "{{issueTypeId}}"
+    },
+    "summary": "{{summary}}",
+    "labels": [],
+    "reporter": {
+      "id": "{{reporterId}}"
+    },
+    "customfield_10021": []
+  },
+  "update": {},
+  "watchers": []
+}
