@@ -22,9 +22,17 @@ dependencies {
     implementation 'com.hubspot.jinjava:jinjava:2.7.1'
     // https://mvnrepository.com/artifact/com.github.javafaker/javafaker
     implementation 'com.github.javafaker:javafaker:1.0.2'
+    // https://mvnrepository.com/artifact/io.qameta.allure/allure-testng
+    implementation 'io.qameta.allure:allure-testng:2.23.0'
 
 }
 
-test {
-    useJUnitPlatform()
+tasks.named('test') {
+    // Use TestNG for unit tests.
+    useTestNG() {
+        useDefaultListeners = true
+        suites "src/test/resources/testng.xml"
+        outputDirectory = file("$projectDir/TestNG_Reports")
+    }
+    reports.html.setDestination(file("$projectDir/GradleReports"))
 }

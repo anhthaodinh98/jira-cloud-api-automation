@@ -4,6 +4,7 @@
     <test name="Test Basics 1">
         <classes>
             <class name="net.atlassian.api.issues.TC001"/>
+            <class name="net.atlassian.api.issues.TC002"/>
         </classes>
     </test>
 </suite>
