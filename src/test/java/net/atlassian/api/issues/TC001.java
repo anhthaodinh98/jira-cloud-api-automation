@@ -2,31 +2,34 @@ package net.atlassian.api.issues;
 
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import io.restassured.response.Response;
-import net.atlassian.api.Issues;
+import net.atlassian.api.IssuesAPI;
 import net.atlassian.api.TestBase;
 import org.testng.annotations.Test;
-import ultilities.DataGenerator;
-
-import java.io.IOException;
 
 public class TC001 extends TestBase {
-    String projectId = "10000";
-    String issueTypeStory = "10005";
-    String userId = "5e4e646d7ece1a0c9992c6ae";
+    IssuesAPI issuesAPI = new IssuesAPI();
+    IssuesAPI issuesAPI2 = new IssuesAPI();
+    String issueId = "PAP-1";
 
-    @Test(description = "This is test case 1")
-    @Description("This is test case 1 allure")
-    public void TC001() throws IOException {
-        Allure.step("Step 1: run post request");
-        Response response = Issues.createIssue(projectId, issueTypeStory, DataGenerator.randomDescription(), userId);
-        int statusCode = response.statusCode();
-        Allure.step("Step 2: Assert status is 201");
-        softAssert.assertEquals(statusCode, 201);
+    @Test
+    @Description("Get existed and non-existed issues")
+    public void TC001() {
+        Allure.step("Step 1: Run get issue request");
+        issuesAPI.getIssue(issueId);
+
+        Allure.step("Step 2: Assert status code is 200");
+        softAssert.assertEquals(issuesAPI.getResponseStatusCode(), 200);
 
         Allure.step("Step 3: Assert jira id");
-        Object o = response.path("key");
-        softAssert.assertTrue(o.toString().matches("PAP-\\d+"));
+        Object o = issuesAPI.getResponse().path("key");
+        softAssert.assertEquals(o.toString(), issueId);
+
+        Allure.step("Step 4: Get non-existed issue");
+        issuesAPI2.getIssue("NON-123");
+
+        Allure.step("Step 5: Assert status code is 404");
+        softAssert.assertEquals(issuesAPI2.getResponseStatusCode(), 404);
+
         softAssert.assertAll();
     }
 }
