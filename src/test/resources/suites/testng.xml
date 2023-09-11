@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Practice Suite">
-    <test name="Test Basics 1">
+    <test name="Test Basics 1" parallel="classes" thread-count="3">
         <classes>
             <class name="net.atlassian.api.issues.TC001"/>
             <class name="net.atlassian.api.issues.TC002"/>
             <class name="net.atlassian.api.issues.TC004"/>
             <class name="net.atlassian.api.issues.TC005"/>
+            <class name="net.atlassian.api.issuesComments.TC006"/>
+            <class name="net.atlassian.api.issuesComments.TC007"/>
+            <class name="net.atlassian.api.issuesComments.TC008"/>
+            <class name="net.atlassian.api.issuesComments.TC009"/>
 <!--            <class name="net.atlassian.api.issueAttachments.TC003"/>-->
         </classes>
     </test>

@@ -1,0 +1,17 @@
+{
+  "body": {
+    "content": [
+      {
+        "content": [
+          {
+            "text": "{{comment}}",
+            "type": "text"
+          }
+        ],
+        "type": "paragraph"
+      }
+    ],
+    "type": "doc",
+    "version": 1
+  }
+}
