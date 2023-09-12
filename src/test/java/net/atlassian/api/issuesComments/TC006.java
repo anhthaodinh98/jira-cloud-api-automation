@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ultilities.DataGenerator;
+import ultilities.JsonHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ import java.util.List;
 public class TC006 extends TestBase {
     IssuesAPI issuesAPI = new IssuesAPI();
     IssueCommentsAPI issueCommentsAPI = new IssueCommentsAPI();
-    String projectId = "10000";
-    String issueTypeStory = "10005";
-    String userId = "5e4e646d7ece1a0c9992c6ae";
+    String projectId = JsonHelper.getData("$.projectId");
+    String issueTypeStory = JsonHelper.getData("$.issueType.story");
+    String userId = JsonHelper.getData("$.userId.admin");
     String issueId;
     List<String> comments = Arrays.asList("first comment", "second comment", "third comment");
     List<String> commentIds = new ArrayList<>();

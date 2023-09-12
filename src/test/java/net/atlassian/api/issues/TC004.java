@@ -7,6 +7,7 @@ import net.atlassian.api.TestBase;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ultilities.DataGenerator;
+import ultilities.JsonHelper;
 
 import java.io.IOException;
 
@@ -14,9 +15,9 @@ public class TC004 extends TestBase {
     IssuesAPI issuesAPI = new IssuesAPI();
     IssuesAPI issuesAPI2 = new IssuesAPI();
     IssuesAPI issuesAPI3 = new IssuesAPI();
-    String projectId = "10000";
-    String issueTypeStory = "10005";
-    String userId = "5e4e646d7ece1a0c9992c6ae";
+    String projectId = JsonHelper.getData("$.projectId");
+    String issueTypeStory = JsonHelper.getData("$.issueType.story");
+    String userId = JsonHelper.getData("$.userId.admin");
     String issueId;
 
     @BeforeMethod

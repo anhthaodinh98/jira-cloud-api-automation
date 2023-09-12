@@ -1,24 +1,24 @@
 package ultilities;
 
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class JsonHelper {
+    private static final String DATA_JSON_FILE = "src/test/resources/data_test/data.json";
 
-    // TODO implement more if needed
-
-    public static JSONObject parseJSONFile(String filename) throws JSONException, IOException {
-        String content = new String(Files.readAllBytes(Paths.get(filename)));
-        return new JSONObject(content);
+    public static <T> T getData(String jsonFilePath, String jsonPath) {
+        String jsonString = null;
+        try {
+            jsonString = FileReader.readFile(jsonFilePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return JsonPath.read(jsonString, jsonPath);
     }
 
-    public static JSONObject parseString(String text) throws JSONException {
-        JSONObject jsonObject = new JSONObject(text);
-        return jsonObject;
+    public static <T> T getData(String jsonPath) {
+        return getData(DATA_JSON_FILE, jsonPath);
     }
 }

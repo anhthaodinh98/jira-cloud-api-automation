@@ -27,6 +27,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     implementation 'org.projectlombok:lombok:1.18.28'
     annotationProcessor "org.projectlombok:lombok:1.18.28"
+    // https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
+    implementation 'com.jayway.jsonpath:json-path:2.8.0'
 
 }
 
