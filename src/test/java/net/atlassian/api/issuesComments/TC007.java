@@ -12,14 +12,13 @@ import ultilities.DataGenerator;
 import ultilities.JsonHelper;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class TC007 extends TestBase {
     IssuesAPI issuesAPI = new IssuesAPI();
     IssuesAPI issuesAPI2 = new IssuesAPI();
     IssueCommentsAPI issueCommentsAPI = new IssueCommentsAPI();
     IssueCommentsAPI issueCommentsAPI2 = new IssueCommentsAPI();
+    IssueCommentsAPI issueCommentsAPI3 = new IssueCommentsAPI();
     String projectId = JsonHelper.getData("$.projectId");
     String issueTypeStory = JsonHelper.getData("$.issueType.story");
     String userId = JsonHelper.getData("$.userId.admin");
@@ -43,16 +42,19 @@ public class TC007 extends TestBase {
     }
 
     @Test
-    @Description("Get comment by id")
+    @Description("Delete comment")
     public void TC007() {
-        Allure.step("Step 1: Run get comment by id request");
-        issueCommentsAPI2.getCommentById(issueId, commentId);
+        Allure.step("Step 1: Run delete comment request");
+        issueCommentsAPI2.deleteComment(issueId, commentId);
 
-        Allure.step("Step 2: Assert status code is 200");
-        softAssert.assertEquals(issueCommentsAPI2.getResponseStatusCode(), 200);
+        Allure.step("Step 2: Assert status code is 204");
+        softAssert.assertEquals(issueCommentsAPI2.getResponseStatusCode(), 204);
 
-        Allure.step("Step 3: Assert comment content");
-        softAssert.assertTrue(doesCommentMatch(comment, issueCommentsAPI2.getResponse()));
+        Allure.step("Step 3: Run get comment by id request");
+        issueCommentsAPI3.getCommentById(issueId, commentId);
+
+        Allure.step("Step 4: Assert status code is 404");
+        softAssert.assertEquals(issueCommentsAPI3.getResponseStatusCode(), 404);
 
         softAssert.assertAll();
     }

@@ -14,8 +14,6 @@ dependencies {
     implementation 'org.testng:testng:7.8.0'
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
     implementation 'io.rest-assured:rest-assured:5.3.1'
-    // https://mvnrepository.com/artifact/com.google.code.gson/gson
-    //    implementation 'com.google.code.gson:gson:2.10.1'
     // https://mvnrepository.com/artifact/org.json/json
     implementation 'org.json:json:20230618'
     // https://mvnrepository.com/artifact/com.hubspot.jinjava/jinjava
@@ -33,10 +31,9 @@ dependencies {
 }
 
 tasks.named('test') {
-    // Use TestNG for unit tests.
     useTestNG() {
         useDefaultListeners = true
-        suites "src/test/resources/testng.xml"
+        suites "src/test/resources/suites/testng.xml"
         outputDirectory = file("$projectDir/TestNG_Reports")
     }
     reports.html.setDestination(file("$projectDir/GradleReports"))

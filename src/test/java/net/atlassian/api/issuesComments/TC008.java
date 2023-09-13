@@ -42,19 +42,19 @@ public class TC008 extends TestBase {
     }
 
     @Test
-    @Description("Delete comment")
-    public void TC008() {
-        Allure.step("Step 1: Run delete comment request");
-        issueCommentsAPI2.deleteComment(issueId, commentId);
+    @Description("Update comment")
+    public void TC008() throws IOException {
+        Allure.step("Step 1: Run update comment request");
+        issueCommentsAPI2.updateComment(issueId, commentId, comment);
 
-        Allure.step("Step 2: Assert status code is 204");
-        softAssert.assertEquals(issueCommentsAPI2.getResponseStatusCode(), 204);
+        Allure.step("Step 2: Assert status code is 200");
+        softAssert.assertEquals(issueCommentsAPI2.getResponseStatusCode(), 200);
 
         Allure.step("Step 3: Run get comment by id request");
         issueCommentsAPI3.getCommentById(issueId, commentId);
 
         Allure.step("Step 4: Assert status code is 404");
-        softAssert.assertEquals(issueCommentsAPI3.getResponseStatusCode(), 404);
+        softAssert.assertTrue(doesCommentMatch(comment, issueCommentsAPI2.getResponse()));
 
         softAssert.assertAll();
     }

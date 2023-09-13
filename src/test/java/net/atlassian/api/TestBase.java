@@ -17,11 +17,6 @@ public class TestBase {
         softAssert = new SoftAssert();
     }
 
-    @AfterSuite
-    public void afterTest() {
-
-    }
-
     /**
      * Use for getComments(issueId)
      * @param expectedComments
