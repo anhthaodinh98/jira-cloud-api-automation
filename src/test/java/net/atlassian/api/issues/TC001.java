@@ -24,7 +24,7 @@ public class TC001 extends TestBase {
         Object o = issuesAPI.getResponse().path("key");
         softAssert.assertEquals(o.toString(), issueId);
 
-        Allure.step("Step 4: Get non-existed issue");
+        Allure.step("Step 4: Run get issue request with a non-existed issue");
         issuesAPI2.getIssue("NON-123");
 
         Allure.step("Step 5: Assert status code is 404");

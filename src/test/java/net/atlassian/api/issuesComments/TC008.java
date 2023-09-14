@@ -28,7 +28,7 @@ public class TC008 extends TestBase {
 
     @BeforeMethod
     public void beforeMethod() throws IOException {
-        Allure.step("Pre-condition: Run post request");
+        Allure.step("Pre-condition: Run create issue request");
         issueId = issuesAPI.createIssue(projectId, issueTypeStory, DataGenerator.randomDescription(), userId);
 
         Allure.step("Add comment");

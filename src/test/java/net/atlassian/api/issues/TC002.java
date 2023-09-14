@@ -28,7 +28,7 @@ public class TC002 extends TestBase {
     @Test
     @Description("Create issue")
     public void TC002() throws IOException {
-        Allure.step("Step 1: Run post request");
+        Allure.step("Step 1: Run create issue request");
         issueId = issuesAPI.createIssue(projectId, issueTypeStory, DataGenerator.randomDescription(), userId);
 
         Allure.step("Step 2: Assert status is 201");

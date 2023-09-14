@@ -28,7 +28,7 @@ public class TC005 extends TestBase {
 
     @BeforeMethod
     public void beforeMethod() throws IOException {
-        Allure.step("Pre-condition: Run post request");
+        Allure.step("Pre-condition: Run create issue request");
         issueId = new IssuesAPI().createIssue(projectId, issueTypeStory, DataGenerator.randomDescription(), userId);
 
         Allure.step("Add comment");
@@ -53,7 +53,7 @@ public class TC005 extends TestBase {
         Allure.step("Step 2: Assert status code is 200");
         softAssert.assertEquals(issueCommentsAPI.getResponseStatusCode(), 200);
 
-        Allure.step("Step 3: Assert list comments");
+        Allure.step("Step 3: Assert list comments in response equals list expected comments");
         softAssert.assertTrue(doesListCommentsMatch(comments, issueCommentsAPI.getResponse()));
 
         softAssert.assertAll();

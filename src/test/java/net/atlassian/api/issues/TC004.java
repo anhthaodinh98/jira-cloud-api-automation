@@ -25,7 +25,7 @@ public class TC004 extends TestBase {
 
     @BeforeMethod
     public void beforeMethod() throws IOException {
-        Allure.step("Pre-condition: Run post request");
+        Allure.step("Pre-condition: Run create issue request");
         issueId = issuesAPI.createIssue(projectId, issueTypeStory, DataGenerator.randomDescription(), userId);
     }
 
@@ -38,7 +38,7 @@ public class TC004 extends TestBase {
     @Test
     @Description("Assign issue")
     public void TC004() throws IOException {
-        Allure.step("Step 1: Run put request");
+        Allure.step("Step 1: Run assign issue request");
         issuesAPI2.assignIssue(issueId, userId);
 
         Allure.step("Step 2: Verify status code is 204");
